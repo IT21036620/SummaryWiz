@@ -2,7 +2,7 @@
 function getApiKey() {
     return new Promise((resolve) => {
         chrome.storage.sync.get("GEMINI_API_KEY", (data) => {
-            resolve(data.GEMINI_API_KEY || ""); // Fallback if not set
+            resolve(data.GEMINI_API_KEY || ""); // Default empty if not set
         });
     });
 }
@@ -11,8 +11,8 @@ function getApiKey() {
 async function summarizeContent(text) {
     const apiKey = await getApiKey();
     if (!apiKey) {
-        console.error("Gemini API key not set. Go to settings.");
-        return "API key missing. Please configure in settings.";
+        console.error("Gemini API key not set. Configure it in settings.");
+        return "API key missing. Please configure it in settings.";
     }
 
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent`;
@@ -36,19 +36,13 @@ async function summarizeContent(text) {
     }
 }
 
-// Function to save summary to Firebase
-async function saveSummaryToFirebase(summary) {
-    const db = getFirestore();
-
+// Function to extract domain from URL
+function getDomainFromUrl(url) {
     try {
-        await addDoc(collection(db, "summaries"), {
-            summary: summary,
-            timestamp: new Date()
-        });
-        document.getElementById("status").textContent = "Summary saved successfully!";
+        return new URL(url).hostname; // Extracts domain (e.g., "example.com")
     } catch (error) {
-        console.error("Error saving summary: ", error);
-        document.getElementById("status").textContent = "Failed to save summary.";
+        console.error("Error extracting domain:", error);
+        return "Unknown";
     }
 }
 
@@ -57,16 +51,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     const summaryBox = document.getElementById("summary");
     const saveBtn = document.getElementById("save-button");
 
-    // Get page content and summarize
+    // Get the active tab URL
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+        const tabUrl = tabs[0].url;
+        const domain = getDomainFromUrl(tabUrl); // Extract domain
+
         chrome.tabs.sendMessage(tabs[0].id, { action: "extractText" }, async (response) => {
             const pageText = response?.text || "No content available.";
             const summary = await summarizeContent(pageText);
             summaryBox.value = summary;
 
-            // Save summary when clicked
+            // Save summary and domain when clicked
             saveBtn.addEventListener("click", () => {
-                saveSummaryToFirebase(summary);
+                window.saveSummaryToFirebase(summary, domain);
             });
         });
     });
