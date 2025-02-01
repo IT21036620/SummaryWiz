@@ -5,7 +5,7 @@ document.getElementById("settings-btn").addEventListener("click", () => {
 
 // Open GitHub page when clicking "About"
 document.getElementById("about-button").addEventListener("click", () => {
-    chrome.tabs.create({ url: "https://github.com/IT21036620/SummaryWiz" });
+    chrome.tabs.create({ url: "https://github.com/YourGitHubRepo" }); // Replace with your GitHub repo URL
 });
 
 // Function to get stored API key
@@ -17,7 +17,16 @@ function getApiKey() {
     });
 }
 
-// Function to summarize webpage content using Gemini API
+// Function to get stored summarization level
+function getSummaryLevel() {
+    return new Promise((resolve) => {
+        chrome.storage.sync.get("SUMMARY_LEVEL", (data) => {
+            resolve(data.SUMMARY_LEVEL || "medium"); // Default to medium
+        });
+    });
+}
+
+// Function to summarize webpage content based on selected level
 async function summarizeContent(text) {
     const apiKey = await getApiKey();
     if (!apiKey) {
@@ -25,10 +34,15 @@ async function summarizeContent(text) {
         return "API key missing. Please configure it in settings.";
     }
 
+    const level = await getSummaryLevel();
+    let levelText = level === "short" ? "Provide a very brief summary." 
+                    : level === "medium" ? "Provide a standard summary." 
+                    : "Provide a more detailed summary.without any styles to the text.";
+
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent`;
 
     const payload = {
-        contents: [{ parts: [{ text: `Summarize the following text in 2-3 sentences:\n\n${text}` }] }]
+        contents: [{ parts: [{ text: `${levelText} Summarize the following content:\n\n${text}` }] }]
     };
 
     try {

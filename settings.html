@@ -4,14 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="settings.css">  <!-- Using Separate CSS -->
 </head>
 <body>
-    <h1>Settings</h1>
-    <label for="apiKey">Gemini API Key:</label>
-    <input type="text" id="apiKey" placeholder="Enter your API key" />
-    <button id="save">Save</button>
-    <p id="status"></p>
+    <div class="settings-container">
+        <!-- Logo -->
+        <img src="assets/logo2.png" alt="SummaryWiz Logo" class="logo">
+        
+        <h2>Settings</h2>
+
+        <!-- API Key Input -->
+        <div class="input-group">
+            <input type="text" id="apiKey" placeholder="API Key" />
+            <button id="save-api">Enter</button>
+        </div>
+
+        <!-- Summarizing Level Selection -->
+        <h3>Summarizing Level</h3>
+        <div class="summary-level">
+            <button class="level-btn" id="short-btn"><img src="icons/short-icon.png"> Short</button>
+            <button class="level-btn" id="medium-btn"><img src="icons/medium-icon.png"> Medium</button>
+            <button class="level-btn" id="detailed-btn"><img src="icons/detailed-icon.png"> Detailed</button>
+        </div>
+
+        <!-- Check Saved Summaries -->
+        <button id="view-summaries" class="view-summaries-btn">Check Saved Summaries</button>
+
+        <p id="status"></p>
+    </div>
+
     <script src="settings.js"></script>
 </body>
 </html>
