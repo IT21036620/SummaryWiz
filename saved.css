@@ -1,0 +1,91 @@
+/* Fullscreen Layout with White Background */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: white;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Saved Summaries Container (Dark Theme) */
+.saved-container {
+    text-align: center;
+    width: 550px;
+    max-height: 80vh; /* Prevents overflow */
+    padding: 30px;
+    background: linear-gradient(135deg, #1e1e2e, #2a2a40);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    overflow-y: auto; /* Makes it scrollable if content is too long */
+}
+
+/* Logo */
+.logo {
+    width: 210px; 
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+/* Title */
+h2 {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Summary Items */
+.summary-item {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Header (Domain & Date) */
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 6px;
+}
+
+/* Summary Content */
+.summary-content {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Delete Button */
+.delete-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+.delete-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+.delete-btn:hover {
+    background: #d32f2f;
+}
