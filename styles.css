@@ -28,7 +28,7 @@ body {
 
 /* Logo */
 .logo {
-  width: 140px; /* Bigger logo */
+  width: 140px; 
   height: 30px;
   margin-bottom: 10px;
 }
@@ -104,4 +104,36 @@ textarea {
   font-size: 12px;
   margin-top: 10px;
   color: lightgreen;
+}
+
+/* Settings & Saved Summaries UI */
+.settings-container, .saved-container {
+  text-align: center;
+  width: 350px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1e1e2e, #2a2a40);
+  color: white;
+  border-radius: 10px;
+}
+
+/* Buttons */
+button {
+  background: linear-gradient(90deg, #8a2be2, #4b0082);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.level-btn.selected {
+  background: #5c00a3;
+}
+
+/* Summary Items */
+.summary-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
 }
