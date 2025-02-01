@@ -3,16 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summarizer</title>
+    <title>SummaryWiz</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Webpage Summarizer</h1>
-    <textarea id="summary" readonly></textarea>
-    <button id="save-button">Save Summary</button>
-    <p id="status"></p>
-    
-    <!-- Firebase Scripts -->
+    <div class="popup-container">
+        <!-- Top Section with Logo and Settings -->
+        <div class="header">
+            <img src="assets/logo.png" alt="SummaryWiz Logo" class="logo">
+            <button id="settings-btn" class="settings-btn">⚙️</button>
+        </div>
+
+        <!-- Summary Section -->
+        <h2>Webpage Summary</h2>
+        <textarea id="summary" readonly>Loading...</textarea>
+
+        <!-- Save Button -->
+        <button id="save-button" class="save-btn">Save To Database</button>
+
+        <!-- About Button -->
+        <button id="about-button" class="about-btn">About</button>
+
+        <p id="status"></p>
+    </div>
+
+    <!-- Firebase & Scripts -->
     <script src="firebase-app-compat.js"></script>
     <script src="firebase-firestore-compat.js"></script>
     <script src="firebase-config.js"></script>

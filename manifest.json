@@ -8,9 +8,9 @@
     "action": {
       "default_popup": "popup.html",
       "default_icon": {
-        "16": "assets/icon.png",
-        "48": "assets/icon.png",
-        "128": "assets/icon.png"
+        "16": "assets/logo_iconOnly.png",
+        "48": "assets/logo_iconOnly.png",
+        "128": "assets/logo_iconOnly.png"
       }
     },
     "background": {

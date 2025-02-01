@@ -1,3 +1,13 @@
+// Open settings page when clicking the settings button
+document.getElementById("settings-btn").addEventListener("click", () => {
+    chrome.runtime.openOptionsPage();
+});
+
+// Open GitHub page when clicking "About"
+document.getElementById("about-button").addEventListener("click", () => {
+    chrome.tabs.create({ url: "https://github.com/IT21036620/SummaryWiz" });
+});
+
 // Function to get stored API key
 function getApiKey() {
     return new Promise((resolve) => {
