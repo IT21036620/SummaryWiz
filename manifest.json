@@ -22,6 +22,7 @@
         "js": ["content.js"]
       }
     ],
+    "options_page": "settings.html",
     "content_security_policy": {
       "extension_pages": "script-src 'self'; connect-src 'self' https://generativelanguage.googleapis.com https://firestore.googleapis.com; object-src 'self'"
     }
