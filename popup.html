@@ -8,18 +8,22 @@
 </head>
 <body>
     <div class="popup-container">
-        <!-- Top Section with Logo and Settings -->
+        <!-- Top Bar -->
         <div class="header">
-            <img src="assets/logo.png" alt="SummaryWiz Logo" class="logo">
+            <img src="assets/logo2.png" alt="SummaryWiz Logo" class="logo">
             <button id="settings-btn" class="settings-btn">⚙️</button>
         </div>
 
         <!-- Summary Section -->
         <h2>Webpage Summary</h2>
+
         <textarea id="summary" readonly>Loading...</textarea>
 
-        <!-- Save Button -->
-        <button id="save-button" class="save-btn">Save To Database</button>
+        <!-- Buttons Container (TTS & Save Button) -->
+        <div class="button-group">
+            <button id="save-button" class="save-btn">Save Summary</button>
+            <button id="tts-button" class="tts-btn">🔊</button>
+        </div>
 
         <!-- About Button -->
         <button id="about-button" class="about-btn">About</button>

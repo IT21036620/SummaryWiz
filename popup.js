@@ -37,7 +37,7 @@ async function summarizeContent(text) {
     const level = await getSummaryLevel();
     let levelText = level === "short" ? "Provide a very brief summary." 
                     : level === "medium" ? "Provide a standard summary." 
-                    : "Provide a more detailed summary.without any styles to the text.";
+                    : "Provide a more detailed summary.";
 
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent`;
 
@@ -70,10 +70,24 @@ function getDomainFromUrl(url) {
     }
 }
 
+// Text-to-Speech (TTS) Function
+function readSummaryAloud() {
+    const summaryText = document.getElementById("summary").value;
+    if (!summaryText) {
+        return;
+    }
+
+    const speech = new SpeechSynthesisUtterance(summaryText);
+    speech.lang = "en-US"; // Adjust language if needed
+    speech.rate = 1; // Adjust speed if needed
+    speechSynthesis.speak(speech);
+}
+
 // Handle popup logic
 document.addEventListener("DOMContentLoaded", async () => {
     const summaryBox = document.getElementById("summary");
     const saveBtn = document.getElementById("save-button");
+    const ttsBtn = document.getElementById("tts-button");
 
     // Get the active tab URL
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
@@ -89,6 +103,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             saveBtn.addEventListener("click", () => {
                 window.saveSummaryToFirebase(summary, domain);
             });
+
+            // Play summary using Text-to-Speech
+            ttsBtn.addEventListener("click", readSummaryAloud);
         });
     });
 });

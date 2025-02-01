@@ -72,7 +72,7 @@ textarea {
   padding: 12px;
   font-size: 14px;
   border-radius: 5px;
-  width: 90%;
+  width: 80%;
   cursor: pointer;
   margin-top: 10px; /* Additional space above the button */
 }
@@ -137,3 +137,33 @@ button {
   margin: 10px;
   border-radius: 5px;
 }
+
+/* Buttons Container */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 10px;
+}
+
+/* Sound (TTS) Button */
+.tts-btn {
+  background: linear-gradient(90deg, #4CAF50, #2E7D32);
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 15%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.tts-btn:hover {
+  background: linear-gradient(90deg, #45a049, #1B5E20);
+}
+
