@@ -3,8 +3,30 @@
   "name": "SummaryWiz",
   "version": "1.0",
   "description": "Summarizes webpage content using Gemini AI and saves it to Firebase.",
-  "permissions": ["contextMenus", "scripting", "storage", "activeTab","tabs"],
+  "permissions": ["contextMenus", "scripting", "storage", "activeTab", "tabs", "identity", "identity.email"],
   "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "firebase-app-compat.js",
+        "firebase-auth-compat.js",
+        "firebase-firestore-compat.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["firebase-config.js", "content.js", "selection_summary.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "pages/settings.html",
   "action": {
     "default_popup": "pages/popup.html",
     "default_icon": {
@@ -19,24 +41,7 @@
     "48": "assets/logo_iconOnly.png",
     "128": "assets/logo_iconOnly.png"
   },
-  "background": {
-    "service_worker": "background.js"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["assets/logo2.png"],
-      "matches": ["<all_urls>"]
-    }
-  ],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["firebase-config.js", "content.js", "selection_summary.js"],
-      "run_at": "document_idle"
-    }
-  ],
-  "options_page": "pages/settings.html",
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; connect-src 'self' https://generativelanguage.googleapis.com https://firestore.googleapis.com; object-src 'self'"
+    "extension_pages": "script-src 'self'; connect-src 'self' https://identitytoolkit.googleapis.com https://firestore.googleapis.com; object-src 'self'"
   }
 }

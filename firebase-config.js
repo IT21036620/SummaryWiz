@@ -1,25 +1,37 @@
-// Ensure Firebase is only initialized once
+// Initialize Firebase only if not already initialized
 if (!firebase.apps.length) {
-    firebase.initializeApp({
-        apiKey: "AIzaSyA6pDdnx19gVROP3lBSjb3Vv9CGQp3KCdE",
-        authDomain: "summarywiz.firebaseapp.com",
-        projectId: "summarywiz",
-        storageBucket: "summarywiz.firebasestorage.app",
-        messagingSenderId: "648390493698",
-        appId: "1:648390493698:web:dff01acdfcf23ae8d2891b",
-        measurementId: "G-0LT8E9EYQF"
+    chrome.storage.sync.get("firebaseConfig", (data) => {
+        if (data.firebaseConfig) {
+            firebase.initializeApp(data.firebaseConfig);
+        } else {
+            console.error("Firebase config not found. Please log in.");
+        }
     });
 }
 
-// Firestore instance
+// Firebase Authentication & Firestore instance
+const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Function to save summary and domain
+// Function to Save Summary Only if User is Logged In
 async function saveSummaryToFirebase(summary, domain) {
     const statusMessage = document.getElementById("status"); // Get status message element
+    const user = auth.currentUser; // Get logged-in user
+
+    if (!user) {
+        statusMessage.textContent = "Please log in to save summaries!";
+        statusMessage.style.color = "red";
+        statusMessage.style.opacity = "1";
+
+        setTimeout(() => {
+            statusMessage.style.opacity = "0";
+        }, 2000);
+        return;
+    }
 
     try {
         await db.collection("summaries").add({
+            userId: user.uid,  // Associate summaries with the logged-in user
             domain: domain,
             summary: summary,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -49,7 +61,7 @@ async function saveSummaryToFirebase(summary, domain) {
     }
 }
 
-
 // Expose functions globally
+window.auth = auth;
 window.db = db;
 window.saveSummaryToFirebase = saveSummaryToFirebase;
