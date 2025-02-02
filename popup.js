@@ -1,3 +1,29 @@
+document.addEventListener("DOMContentLoaded", async () => {
+    // Get the active tab from the current window
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs.length > 0 && tabs[0].url) {
+            console.log("Current tab URL:", tabs[0].url);
+
+            // List of empty tab URLs
+            const emptyTabUrls = [
+                "chrome://newtab/",
+                "chrome://welcome/",
+                "chrome://startpageshared/",
+                "about:blank",
+                ""
+            ];
+            
+            if (emptyTabUrls.includes(tabs[0].url)) {
+                console.log("Redirecting to predefined website...");
+                chrome.tabs.update(tabs[0].id, { url: "https://www.anunine.com" });
+            }
+        } else {
+            console.log("No active tab found or permission denied.");
+        }
+    });
+});
+
+
 // Open settings page when clicking the settings button
 document.getElementById("settings-btn").addEventListener("click", () => {
     chrome.runtime.openOptionsPage();

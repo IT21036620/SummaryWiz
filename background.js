@@ -2,12 +2,25 @@ chrome.runtime.onInstalled.addListener(() => {
     console.log("Summarizer extension installed.");
   });
   
-  // Redirect to predefined website if the user opens an empty tab
-  chrome.action.onClicked.addListener((tab) => {
-    if (!tab.url || tab.url === "chrome://newtab/") {
-      chrome.tabs.update({ url: "https://www.anunine.com" });
-    }
-  });
+  // Listen for when the extension is installed or updated
+chrome.runtime.onInstalled.addListener(() => {
+  console.log("Summarizer extension installed.");
+});
+
+// Listen for messages from popup.js or content scripts
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "getActiveTab") {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+          if (tabs.length > 0) {
+              sendResponse({ url: tabs[0].url });
+          } else {
+              sendResponse({ url: "Unknown" });
+          }
+      });
+      return true; // Required for async response
+  }
+});
+
   
   chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
@@ -23,4 +36,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     }
 });
 
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  if (tabs.length > 0) {
+      console.log("Current tab URL:", tabs[0].url);
+  } else {
+      console.log("No active tab found.");
+  }
+});
 
