@@ -135,3 +135,33 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const copyButton = document.getElementById("copy-button");
+    const summaryField = document.getElementById("summary");
+    const statusMessage = document.getElementById("status"); // Get status message element
+
+    copyButton.addEventListener("click", () => {
+        navigator.clipboard.writeText(summaryField.value).then(() => {
+            // Show success message
+            statusMessage.textContent = "Copied to clipboard!";
+            statusMessage.style.color = "lightgreen";
+            statusMessage.style.opacity = "1";
+
+            // Hide message after 2 seconds
+            setTimeout(() => {
+                statusMessage.style.opacity = "0";
+            }, 2000);
+        }).catch(err => {
+            console.error("Failed to copy: ", err);
+            statusMessage.textContent = "Failed to copy!";
+            statusMessage.style.color = "red";
+
+            setTimeout(() => {
+                statusMessage.style.opacity = "0";
+            }, 2000);
+        });
+    });
+});
+
+

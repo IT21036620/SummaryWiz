@@ -1,23 +1,21 @@
-/* General Styles */
 body {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(135deg, #1e1e2e, #2a2a40);
   color: white;
   padding: 15px;
-  width: 340px; /* Increased width slightly */
-  height: 460px; /* Increased height */
+  width: 340px;
+  height: 460px;
   text-align: center;
   border-radius: 10px;
+  overflow: hidden;
 }
 
-/* Popup Container */
 .popup-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Header */
 .header {
   position: relative;
   width: 100%;
@@ -26,17 +24,16 @@ body {
   align-items: center;
 }
 
-/* Logo */
 .logo {
-  width: 140px; 
-  height: 30px;
-  margin-bottom: 10px;
+  width: 210px; 
+  height: 50px;
+  margin-bottom: 15px;
+  padding-right: 10px;
 }
 
-/* Settings Button */
 .settings-btn {
   position: absolute;
-  right: 10px;
+  right: 5px;
   top: 10px;
   background: none;
   border: none;
@@ -54,35 +51,37 @@ h2 {
 /* Summary Box */
 textarea {
   width: 90%;
-  height: 220px; /* Increased height for better readability */
+  height: 220px; 
   background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
   padding: 10px;
   border-radius: 5px;
-  margin-bottom: 20px; /* Added more space below */
+  margin-bottom: 10px; 
   resize: none;
+  overflow-y: auto; 
+  text-align: justify;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Save Button */
 .save-btn {
   background: linear-gradient(90deg, #8a2be2, #4b0082);
   color: white;
   border: none;
   padding: 12px;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 5px;
   width: 80%;
   cursor: pointer;
-  margin-top: 10px; /* Additional space above the button */
+  margin-top: 5px;
+  font-weight: bold;
 }
-
 
 .save-btn:hover {
   background: linear-gradient(90deg, #9d30e0, #5c00a3);
 }
 
-/* About Button */
 .about-btn {
   background: rgba(255, 255, 255, 0.2);
   color: white;
@@ -90,7 +89,7 @@ textarea {
   padding: 8px;
   font-size: 12px;
   border-radius: 5px;
-  width: 60%;
+  width: 40%;
   cursor: pointer;
   margin-top: 10px;
 }
@@ -104,16 +103,7 @@ textarea {
   font-size: 12px;
   margin-top: 10px;
   color: lightgreen;
-}
-
-/* Settings & Saved Summaries UI */
-.settings-container, .saved-container {
-  text-align: center;
-  width: 350px;
-  padding: 20px;
-  background: linear-gradient(135deg, #1e1e2e, #2a2a40);
-  color: white;
-  border-radius: 10px;
+  /*transition: opacity 0.5s ease-in-out;  Smooth fade-in and fade-out */
 }
 
 /* Buttons */
@@ -152,7 +142,7 @@ button {
   color: white;
   border: none;
   padding: 12px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   border-radius: 5px;
   width: 15%;
@@ -167,4 +157,99 @@ button {
   background: linear-gradient(90deg, #45a049, #1B5E20);
 }
 
+/* Summary Container */
+.summary-container {
+  position: relative;
+  width: 90%;
+}
 
+/* Summary Text Field */
+#summary {
+  width: 100%;
+  height: 220px; 
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 10px;
+  padding-top: 50px;
+  border-radius: 5px;
+  resize: none;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Copy Button */
+.copy-btn {
+  position: absolute;
+  right: 5px; 
+  top: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #4CAF50;
+  padding: 6px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.copy-btn:hover {
+  color: #45a049;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* === SCROLLBAR STYLING === */
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #DFE9EB;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #0A2375;
+  border: 1px solid #FFFFFF;
+  transition: background 0.3s ease-in-out;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #3134A3;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #5934A3;
+}
+
+/* Apply Scrollbar Styling to Specific Elements */
+textarea::-webkit-scrollbar,
+#savedSummariesContainer::-webkit-scrollbar,
+.settings-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea::-webkit-scrollbar-thumb,
+#savedSummariesContainer::-webkit-scrollbar-thumb,
+.settings-container::-webkit-scrollbar-thumb {
+  background: #0A2375;
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover,
+#savedSummariesContainer::-webkit-scrollbar-thumb:hover,
+.settings-container::-webkit-scrollbar-thumb:hover {
+  background: #3134A3;
+}
