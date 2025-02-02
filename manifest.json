@@ -13,6 +13,12 @@
       "128": "assets/logo_iconOnly.png"
     }
   },
+  "icons": {
+    "16": "assets/logo_iconOnly.png",
+    "32": "assets/logo_iconOnly.png",
+    "48": "assets/logo_iconOnly.png",
+    "128": "assets/logo_iconOnly.png"
+  },
   "background": {
     "service_worker": "background.js"
   },
