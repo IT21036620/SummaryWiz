@@ -9,3 +9,18 @@ chrome.runtime.onInstalled.addListener(() => {
     }
   });
   
+  chrome.runtime.onInstalled.addListener(() => {
+    chrome.contextMenus.create({
+        id: "summarizeText",
+        title: "Summarize Selected Text",
+        contexts: ["selection"]
+    });
+});
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === "summarizeText" && info.selectionText) {
+        chrome.tabs.sendMessage(tab.id, { action: "summarizeText", text: info.selectionText });
+    }
+});
+
+

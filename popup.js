@@ -5,7 +5,7 @@ document.getElementById("settings-btn").addEventListener("click", () => {
 
 // Open GitHub page when clicking "About"
 document.getElementById("about-button").addEventListener("click", () => {
-    chrome.tabs.create({ url: "https://github.com/YourGitHubRepo" }); // Replace with your GitHub repo URL
+    chrome.tabs.create({ url: "https://github.com/YourGitHubRepo" });
 });
 
 // Function to get stored API key

@@ -1,25 +1,26 @@
 {
-    "manifest_version": 3,
-    "name": "SummaryWiz",
-    "version": "1.0",
-    "description": "Summarizes webpage content using Gemini AI and saves it to Firebase.",
-    "permissions": ["activeTab", "storage"],
-    "host_permissions": ["<all_urls>"],
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "16": "assets/logo_iconOnly.png",
-        "48": "assets/logo_iconOnly.png",
-        "128": "assets/logo_iconOnly.png"
-      }
-    },
-    "background": {
+  "manifest_version": 3,
+  "name": "SummaryWiz",
+  "version": "1.0",
+  "description": "Summarizes webpage content using Gemini AI and saves it to Firebase.",
+  "permissions": ["contextMenus", "scripting", "storage", "activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/logo_iconOnly.png",
+      "48": "assets/logo_iconOnly.png",
+      "128": "assets/logo_iconOnly.png"
+    }
+  },
+  "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["firebase-config.js", "content.js", "selection_summary.js"],
+      "run_at": "document_idle"
     }
   ],
   "options_page": "settings.html",
@@ -27,4 +28,3 @@
     "extension_pages": "script-src 'self'; connect-src 'self' https://generativelanguage.googleapis.com https://firestore.googleapis.com; object-src 'self'"
   }
 }
-  
