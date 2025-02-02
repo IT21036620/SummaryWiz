@@ -17,6 +17,9 @@ SummaryWiz is a Chrome extension that summarizes webpage content using Gemini AI
 
 ## Demo
 
+![Selection Summary](./assets/Selection_Summary.gif)
+
+![Summary Popup](./assets/Summary_popup.gif)
 
 ## Installation
 

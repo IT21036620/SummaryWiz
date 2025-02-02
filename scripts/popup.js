@@ -30,7 +30,7 @@ document.getElementById("settings-btn").addEventListener("click", () => {
 
 // Open GitHub page when clicking "About"
 document.getElementById("about-button").addEventListener("click", () => {
-    chrome.tabs.create({ url: "https://github.com/YourGitHubRepo" });
+    chrome.tabs.create({ url: "https://github.com/IT21036620/SummaryWiz" });
 });
 
 // Function to get stored API key
