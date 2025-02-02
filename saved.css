@@ -4,7 +4,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: white;
+    background: #454552;
     margin: 0;
     overflow: hidden;
 }
@@ -12,8 +12,8 @@ body {
 /* Saved Summaries Container (Dark Theme) */
 .saved-container {
     text-align: center;
-    width: 550px;
-    max-height: 80vh; /* Prevents overflow */
+    width: 750px;
+    max-height: 100vh; /* Prevents overflow */
     padding: 30px;
     background: linear-gradient(135deg, #1e1e2e, #2a2a40);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -37,7 +37,7 @@ h2 {
 
 /* Summary Items */
 .summary-item {
-    background: white;
+    background: #e4e4ee;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 8px;
@@ -51,7 +51,7 @@ h2 {
 .summary-header {
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
     color: #444;
     margin-bottom: 6px;
@@ -59,8 +59,9 @@ h2 {
 
 /* Summary Content */
 .summary-content {
-    font-size: 14px;
+    font-size: 16px;
     color: #666;
+    text-align: justify;
 }
 
 /* Delete Button */
@@ -89,3 +90,47 @@ h2 {
 .delete-btn:hover {
     background: #d32f2f;
 }
+
+/* Container for saved summaries */
+#savedSummariesContainer {
+    max-height: 400px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Scrollbar styles */
+#savedSummariesContainer::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+#savedSummariesContainer::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #DFE9EB;
+}
+
+#savedSummariesContainer::-webkit-scrollbar-track:hover {
+    background-color: #B8C0C2;
+}
+
+#savedSummariesContainer::-webkit-scrollbar-track:active {
+    background-color: #B8C0C2;
+}
+
+#savedSummariesContainer::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #0A2375;
+    border: 1px solid #FFFFFF;
+}
+
+#savedSummariesContainer::-webkit-scrollbar-thumb:hover {
+    background-color: #3134A3;
+}
+
+#savedSummariesContainer::-webkit-scrollbar-thumb:active {
+    background-color: #5934A3;
+}
+
