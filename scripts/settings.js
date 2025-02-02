@@ -48,6 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Open Saved Summaries Page
     viewSummariesBtn.addEventListener("click", () => {
-        chrome.tabs.create({ url: "saved.html" });
+        chrome.tabs.create({ url: "../pages/saved.html" });
     });
 });

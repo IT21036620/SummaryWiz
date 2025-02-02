@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <span class="date">${data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : "N/A"}</span>
                 </div>
                 <p class="summary-content">${data.summary}</p>
-                <button class="delete-btn" data-id="${doc.id}"><img src="assets/delete.png"> Delete</button>
+                <button class="delete-btn" data-id="${doc.id}"><img src="../assets/delete.png"> Delete</button>
             `;
             summariesList.appendChild(summaryElement);
         });
