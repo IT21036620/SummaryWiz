@@ -1,4 +1,3 @@
-/* Fullscreen Layout with White Background */
 body {
     display: flex;
     justify-content: center;
@@ -9,33 +8,29 @@ body {
     overflow: hidden;
 }
 
-/* Saved Summaries Container (Dark Theme) */
 .saved-container {
     text-align: center;
     width: 750px;
-    max-height: 100vh; /* Prevents overflow */
+    max-height: 100vh;
     padding: 30px;
     background: linear-gradient(135deg, #1e1e2e, #2a2a40);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
-    overflow-y: auto; /* Makes it scrollable if content is too long */
+    overflow-y: auto; 
 }
 
-/* Logo */
 .logo {
     width: 210px; 
     height: 50px;
     margin-bottom: 15px;
 }
 
-/* Title */
 h2 {
     font-size: 24px;
     color: white;
     margin-bottom: 20px;
 }
 
-/* Summary Items */
 .summary-item {
     background: #e4e4ee;
     padding: 15px;
@@ -57,14 +52,12 @@ h2 {
     margin-bottom: 6px;
 }
 
-/* Summary Content */
 .summary-content {
     font-size: 16px;
     color: #666;
     text-align: justify;
 }
 
-/* Delete Button */
 .delete-btn {
     background: #ff4d4d;
     color: white;
@@ -91,7 +84,6 @@ h2 {
     background: #d32f2f;
 }
 
-/* Container for saved summaries */
 #savedSummariesContainer {
     max-height: 400px;
     overflow-y: auto;

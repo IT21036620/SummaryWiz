@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // List of empty tab URLs
             const emptyTabUrls = [
                 "chrome://newtab/",
-                "chrome://welcome/",
-                "chrome://startpageshared/",
+                "chrome://new-tab-page/",
                 "about:blank",
                 ""
             ];
@@ -47,7 +46,7 @@ function getApiKey() {
 function getSummaryLevel() {
     return new Promise((resolve) => {
         chrome.storage.sync.get("SUMMARY_LEVEL", (data) => {
-            resolve(data.SUMMARY_LEVEL || "medium"); // Default to medium
+            resolve(data.SUMMARY_LEVEL || "short"); // Default to short
         });
     });
 }
@@ -89,7 +88,8 @@ async function summarizeContent(text) {
 // Function to extract domain from URL
 function getDomainFromUrl(url) {
     try {
-        return new URL(url).hostname; // Extracts domain (e.g., "example.com")
+        // Extracts domain 
+        return new URL(url).hostname; 
     } catch (error) {
         console.error("Error extracting domain:", error);
         return "Unknown";
@@ -104,8 +104,8 @@ function readSummaryAloud() {
     }
 
     const speech = new SpeechSynthesisUtterance(summaryText);
-    speech.lang = "en-US"; // Adjust language if needed
-    speech.rate = 1; // Adjust speed if needed
+    speech.lang = "en-US";
+    speech.rate = 1;
     speechSynthesis.speak(speech);
 }
 
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 document.addEventListener("DOMContentLoaded", () => {
     const copyButton = document.getElementById("copy-button");
     const summaryField = document.getElementById("summary");
-    const statusMessage = document.getElementById("status"); // Get status message element
+    const statusMessage = document.getElementById("status");
 
     copyButton.addEventListener("click", () => {
         navigator.clipboard.writeText(summaryField.value).then(() => {
