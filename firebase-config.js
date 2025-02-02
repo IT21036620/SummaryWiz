@@ -16,18 +16,39 @@ const db = firebase.firestore();
 
 // Function to save summary and domain
 async function saveSummaryToFirebase(summary, domain) {
+    const statusMessage = document.getElementById("status"); // Get status message element
+
     try {
         await db.collection("summaries").add({
             domain: domain,
             summary: summary,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
-        document.getElementById("status").textContent = "Summary saved successfully!";
+
+        // Show success message
+        statusMessage.textContent = "Summary saved successfully!";
+        statusMessage.style.color = "lightgreen";
+        statusMessage.style.opacity = "1";
+
+        // Hide message after 2 seconds
+        setTimeout(() => {
+            statusMessage.style.opacity = "0";
+        }, 2000);
     } catch (error) {
         console.error("Error saving summary: ", error);
-        document.getElementById("status").textContent = "Failed to save summary.";
+        
+        // Show failure message
+        statusMessage.textContent = "Failed to save summary.";
+        statusMessage.style.color = "red";
+        statusMessage.style.opacity = "1";
+
+        // Hide message after 2 seconds
+        setTimeout(() => {
+            statusMessage.style.opacity = "0";
+        }, 2000);
     }
 }
+
 
 // Expose functions globally
 window.db = db;
