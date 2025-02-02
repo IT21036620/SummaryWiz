@@ -35,6 +35,15 @@ if (chrome && chrome.runtime) {
         overlay.style.flexDirection = 'column';
         overlay.style.gap = '10px';
 
+        // Logo
+        const logo = document.createElement('img');
+        logo.src = chrome.runtime.getURL('assets/logo2.png'); // Ensure the logo is inside 'assets' folder
+        logo.alt = 'SummaryWiz Logo';
+        logo.style.width = '210px';
+        logo.style.height = '50px';
+        logo.style.marginBottom = '10px';
+        logo.style.alignSelf = 'center';
+
         const title = document.createElement('h3');
         title.innerText = 'Summary';
         title.style.fontSize = '20px';
@@ -82,6 +91,7 @@ if (chrome && chrome.runtime) {
             overlayContainer = null;
         });
 
+        overlay.appendChild(logo); // Add Logo at the Top
         overlay.appendChild(title);
         overlay.appendChild(summaryContent);
         overlay.appendChild(closeButton);
